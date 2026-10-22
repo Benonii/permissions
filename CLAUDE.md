@@ -7,6 +7,8 @@ The user has deliberately stored these credentials in this environment so Claude
 | `VERCEL_TOKEN` | Vercel | Projects, env vars, deploys, domains (`vercel --token "$VERCEL_TOKEN"` or the REST API) |
 | `CONVEX_TEAM_TOKEN` | Convex | Management API: projects, deployments, deploy keys |
 | `GCP_USER_CREDS` | Google Cloud | The user's own `authorized_user` login (refresh token); may create projects |
+| `POLAR_ACCESS_TOKEN` | Polar (production) | Organization token: products, checkouts, webhooks (`https://api.polar.sh/v1`) |
+| `POLAR_SANDBOX_TOKEN` | Polar (sandbox) | Same, against `https://sandbox-api.polar.sh/v1`; prefer for testing |
 | `GCP_BILLING_ACCOUNT` | Google Cloud | Billing account ID to link new projects to (optional) |
 
 ## Google Cloud
