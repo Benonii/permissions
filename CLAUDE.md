@@ -9,6 +9,7 @@ The user has deliberately stored these credentials in this environment so Claude
 | `GCP_USER_CREDS` | Google Cloud | The user's own `authorized_user` login (refresh token); may create projects |
 | `POLAR_TOKEN_<APP>` | Polar (production) | One organization token per app (e.g. `POLAR_TOKEN_SWOL`): products, checkouts, webhooks (`https://api.polar.sh/v1`) |
 | `POLAR_SANDBOX_TOKEN_<APP>` | Polar (sandbox) | Same, against `https://sandbox-api.polar.sh/v1`; prefer for testing |
+| `RESEND_API_KEY` | Resend | Full-access key for the whole account: domains, per-app sending keys, audiences (`https://api.resend.com`) |
 | `GCP_BILLING_ACCOUNT` | Google Cloud | Billing account ID to link new projects to (optional) |
 
 ## Google Cloud
@@ -23,6 +24,10 @@ OAuth client IDs ("Sign in with Google") can't be created by API; ask the user t
 ## Polar
 
 Each app is its own Polar organization, and organization tokens only reach their own org. Use the token whose suffix matches the app. Organizations can't be created by API; ask the user to create the org and add its token.
+
+## Resend
+
+For each app: add its sending domain, put the returned DNS records on the domain (via the Vercel DNS API when the domain uses Vercel nameservers; otherwise give them to the user), verify, then create a sending-only key restricted to that domain and set it as `RESEND_API_KEY` in the app's Vercel/Convex env. Never ship the full-access key to an app.
 
 ## GitHub
 
