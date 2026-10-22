@@ -7,8 +7,8 @@ The user has deliberately stored these credentials in this environment so Claude
 | `VERCEL_TOKEN` | Vercel | Projects, env vars, deploys, domains (`vercel --token "$VERCEL_TOKEN"` or the REST API) |
 | `CONVEX_TEAM_TOKEN` | Convex | Management API: projects, deployments, deploy keys |
 | `GCP_USER_CREDS` | Google Cloud | The user's own `authorized_user` login (refresh token); may create projects |
-| `POLAR_ACCESS_TOKEN` | Polar (production) | Organization token: products, checkouts, webhooks (`https://api.polar.sh/v1`) |
-| `POLAR_SANDBOX_TOKEN` | Polar (sandbox) | Same, against `https://sandbox-api.polar.sh/v1`; prefer for testing |
+| `POLAR_TOKEN_<APP>` | Polar (production) | One organization token per app (e.g. `POLAR_TOKEN_SWOL`): products, checkouts, webhooks (`https://api.polar.sh/v1`) |
+| `POLAR_SANDBOX_TOKEN_<APP>` | Polar (sandbox) | Same, against `https://sandbox-api.polar.sh/v1`; prefer for testing |
 | `GCP_BILLING_ACCOUNT` | Google Cloud | Billing account ID to link new projects to (optional) |
 
 ## Google Cloud
@@ -19,6 +19,10 @@ The session's built-in `CLOUDSDK_AUTH_ACCESS_TOKEN` is a proxy stand-in that doe
 - REST: `TOKEN=$(scripts/gcp-token.sh)` then `curl -H "Authorization: Bearer $TOKEN" ...`. Some APIs (e.g. API Keys) also need `-H "x-goog-user-project: <project-id>"`, or `--billing-project` with gcloud.
 
 OAuth client IDs ("Sign in with Google") can't be created by API; ask the user to make them in the console.
+
+## Polar
+
+Each app is its own Polar organization, and organization tokens only reach their own org. Use the token whose suffix matches the app. Organizations can't be created by API; ask the user to create the org and add its token.
 
 ## GitHub
 
