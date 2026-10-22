@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(scripts/gcp-token.sh)",
+      "Bash(./scripts/gcp-token.sh)",
+      "Bash(scripts/gcloud.sh:*)",
+      "Bash(./scripts/gcloud.sh:*)"
+    ]
+  }
+}
